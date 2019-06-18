@@ -9,10 +9,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Flutter
 
 class ViewController: UITableViewController {
     
-    let Demos = [["title":"RxSwift"],["title":"AFDemos"]]
+    let Demos = [["title":"RxSwift"],["title":"AFDemos"],["title":"Flutter"],["title":"FlutterUserInterface"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,20 @@ class ViewController: UITableViewController {
             break
         case 1:
             demoVC = AFDemosVC()
+            break
+        case 2:
+            let flutterEngine = (UIApplication.shared.delegate as? AppDelegate)?.flutterEngine
+            let flutterViewController = FlutterViewController(nibName: nil, bundle: nil)
+            flutterViewController.setInitialRoute("flutterCount")
+            flutterEngine?.run(withEntrypoint: nil)
+            demoVC = flutterViewController
+            break
+        case 3:
+            let flutterEngine = (UIApplication.shared.delegate as? AppDelegate)?.flutterEngine
+            let flutterViewController = FlutterViewController(nibName: nil, bundle: nil)
+            flutterViewController.setInitialRoute("flutterUserInterface")
+            flutterEngine?.run(withEntrypoint: nil)
+            demoVC = flutterViewController
         default:
             break
         }
